@@ -253,6 +253,12 @@ export class FileService {
     public async compressTextToBase64Zip(content: string): Promise<string> {
         let zip = new JSZip();
         zip.file("log.txt", content);
+        try { 
+            let geolocationFileContent = this.fileSystemWrapper.readAsText(this.fileSystemWrapper.dataDirectory, "geolocation.log");
+            zip.file("geolocation.txt", geolocationFileContent);
+        } catch (ex) {
+            this.loggingService.error("[Files] failed to add geolocation log: " + (ex as any).message);
+        }
         let data = await zip.generateAsync({ type: "base64", compression: "DEFLATE", compressionOptions: { level: 6 } });
         return data;
     }

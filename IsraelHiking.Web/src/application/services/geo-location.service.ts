@@ -3,6 +3,7 @@ import { BackgroundGeolocationPlugin, Location } from "@capacitor-community/back
 import { App } from "@capacitor/app";
 import { NgRedux } from "@angular-redux2/store";
 import { registerPlugin } from "@capacitor/core";
+import { File as FileSystemWrapper, FileEntry } from "@awesome-cordova-plugins/file/ngx";
 
 import { ResourcesService } from "./resources.service";
 import { RunningContextService } from "./running-context.service";
@@ -31,6 +32,7 @@ export class GeoLocationService {
                 private readonly runningContextService: RunningContextService,
                 private readonly loggingService: LoggingService,
                 private readonly toastService: ToastService,
+                private readonly FileSystemWrapper: FileSystemWrapper,
                 private readonly ngZone: NgZone,
                 private readonly ngRedux: NgRedux<ApplicationState>) {
         this.watchNumber = -1;
@@ -143,8 +145,9 @@ export class GeoLocationService {
         this.bgWatcherId = await BackgroundGeolocation.addWatcher({
             backgroundTitle: "Israel Hiking Map",
             backgroundMessage: this.resources.runningInBackground,
-            distanceFilter: 5
-        }, (location) => {
+            distanceFilter: 5,
+            file: this.FileSystemWrapper.dataDirectory + "geolocation.log"
+        } as any, (location) => {
             this.storeLocationForLater(this.locationToPosition(location));
             if (this.isBackground) {
                 return;
