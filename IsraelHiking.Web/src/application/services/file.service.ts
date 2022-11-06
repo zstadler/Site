@@ -254,7 +254,7 @@ export class FileService {
         let zip = new JSZip();
         zip.file("log.txt", content);
         try { 
-            let geolocationFileContent = this.fileSystemWrapper.readAsText(this.fileSystemWrapper.dataDirectory, "geolocation.log");
+            let geolocationFileContent = await this.fileSystemWrapper.readAsText(this.fileSystemWrapper.dataDirectory, LoggingService.GEOLOCATION_LOG_FILE);
             zip.file("geolocation.txt", geolocationFileContent);
         } catch (ex) {
             this.loggingService.error("[Files] failed to add geolocation log: " + (ex as any).message);

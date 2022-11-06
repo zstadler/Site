@@ -3,7 +3,7 @@ import { BackgroundGeolocationPlugin, Location } from "@capacitor-community/back
 import { App } from "@capacitor/app";
 import { NgRedux } from "@angular-redux2/store";
 import { registerPlugin } from "@capacitor/core";
-import { File as FileSystemWrapper, FileEntry } from "@awesome-cordova-plugins/file/ngx";
+import { File as FileSystemWrapper } from "@awesome-cordova-plugins/file/ngx";
 
 import { ResourcesService } from "./resources.service";
 import { RunningContextService } from "./running-context.service";
@@ -146,7 +146,7 @@ export class GeoLocationService {
             backgroundTitle: "Israel Hiking Map",
             backgroundMessage: this.resources.runningInBackground,
             distanceFilter: 5,
-            file: this.FileSystemWrapper.dataDirectory + "geolocation.log"
+            file: this.FileSystemWrapper.dataDirectory + LoggingService.GEOLOCATION_LOG_FILE
         } as any, (location) => {
             this.storeLocationForLater(this.locationToPosition(location));
             if (this.isBackground) {

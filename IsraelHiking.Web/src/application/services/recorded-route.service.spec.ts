@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TestBed, inject } from "@angular/core/testing";
 import { MockNgRedux, MockNgReduxModule } from "@angular-redux2/store/testing";
+import { File as FileSystemWrapper } from "@awesome-cordova-plugins/file/ngx";
 
 import { RecordedRouteService } from "./recorded-route.service";
 import { ToastServiceMockCreator } from "./toast.service.spec";
@@ -37,6 +38,7 @@ describe("Recorded Route Service", () => {
                 { provide: ToastService, useValue: toastMock.toastService },
                 { provide: LoggingService, useValue: loggingServiceMock },
                 { provide: TracesService, useValue: tracesServiceMock },
+                FileSystemWrapper,
                 GeoLocationService,
                 RunningContextService,
                 ConnectionService,

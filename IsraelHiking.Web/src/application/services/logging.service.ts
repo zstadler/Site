@@ -22,6 +22,8 @@ interface LogLine {
 
 @Injectable()
 export class LoggingService {
+    public static readonly GEOLOCATION_LOG_FILE = "geolocation.log"
+
     private static readonly LOGGING_DB_NAME = "Logging";
     private static readonly LOGGING_TABLE_NAME = "logging";
     private static readonly MAX_LOG_LINES = 50000;
