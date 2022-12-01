@@ -15,7 +15,7 @@ jobs:
         EXECUTE_COMMANDS: |
           rm -fr VectorMap
           git clone --depth 1 https://github.com/IsraelHikingMap/VectorMap.git
-          cp -up VectorMap/Icons/publish/sprite* ../IsraelHiking.Web/src/content/sprite
+          cp -up VectorMap/Icons/publish/sprite* IsraelHiking.Web/src/content/sprite
           rm -fr VectorMap
         COMMIT_MESSAGE: 'chore: update sprite files'
         COMMIT_NAME: 'GitHub Actions'
