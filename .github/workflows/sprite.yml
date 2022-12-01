@@ -1,0 +1,14 @@
+name: "Update sprite files"
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  sprite:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: technote-space/create-pr-action@v2
+      with:
+        EXECUTE_COMMANDS: Scripts/update-sprite.sh
+        PR_BRANCH_NAME: 'chore-sprite-update-${PR_ID}'
+        PR_TITLE: 'chore: update sprite files'
