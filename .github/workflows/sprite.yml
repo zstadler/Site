@@ -13,7 +13,6 @@ jobs:
     - uses: technote-space/create-pr-action@v2
       with:
         EXECUTE_COMMANDS: |
-          rm -fr VectorMap
           git clone --depth 1 https://github.com/IsraelHikingMap/VectorMap.git
           cp -up VectorMap/Icons/publish/sprite* IsraelHiking.Web/src/content/sprite
           rm -fr VectorMap
